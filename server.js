@@ -8,6 +8,9 @@ var cheerio = require("cheerio");
 
 var app = express();
 
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 // Set the app up with morgan.
 // morgan is used to log our HTTP Requests. By setting morgan to 'dev'
 // the :status token will be colored red for server error codes,
@@ -195,4 +198,6 @@ app.get("/delete/note/:id", function(req, res) {
       }
     }
   );
+  mongoose.Promise = Promise;
+  mongoose.connect(MONGODB_URI);
 });

@@ -1,0 +1,154 @@
+<!-- Nav Bar -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Onion Scraper</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../public/styles.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<style>
+  #landing {
+    height: 100vh;
+    background-image: url("https://images.pexels.com/photos/884454/pexels-photo-884454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+  }
+
+  #mainText {
+    margin-top: 30vh;
+  }
+
+  .overlay {
+
+    margin: auto;
+    margin-top: 150px;
+    text-align: center;
+    width: 50%;
+  }
+
+  h2 {
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+  }
+</style>
+
+<body>
+
+  <div class="navbar-fixed">
+    <nav class="black">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Onion Scraper</a>
+          <ul class="right hide-on-med-and-down" id="navList">
+            <li class="tab"><a href="#articlessection">Articles</a></li>
+            <li class="tab"><a href="#Saved Articles">Favorites</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="section" id="landing">
+
+    <div class="overlay">
+      <h2>Click Below to start!</h2>
+    </div>
+
+    <p class="center-align">
+      <button id="scraper-button" class="waves-effect waves-light btn-large red"><i class="material-icons right">speaker_notes</i>Scrape</a>
+    </p>
+
+
+
+  </div>
+
+
+
+
+
+  <div class="container">
+    <div class="section">
+      <div id="articles">
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div id="Saved Articles" class="section scrollspy">
+          <div class="row center">
+            <h1 class="header col s12 light">Saved Articles</h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="section">
+
+        <div class="row">
+          <div id="faves" class="col s12">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    </footer>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4 id="Mheader"></h4>
+        <p id="Mtext"></p>
+        <div>
+          <ul class="collection" id="savedNotes">
+          </ul>
+
+        </div>
+        <textarea id="note" class="materialize-textarea"></textarea>
+        <label for="note">Note</label>
+        <a href="#!" id="addNote" class="waves-effect waves-green right btn">Add Note</a>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">close</a>
+      </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="app.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.modal').modal();
+        $('.sidenav').sidenav();
+        $('.scrollspy').scrollSpy();
+        getFaves()
+      });
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 function createCard(data) {
   var card =
-    "<div class='card medium blue-grey darken-1'><div class='card-content white-text'><span class='card-title'>" +
+    "<div class='card-panel red'><div class='card-content white-text'><span class='card-title'>" +
     data.title +
     "</span><a target='_blank' href=" +
     data.link +
@@ -63,7 +63,7 @@ function getFaves() {
 }
 function createFaveCard(data) {
   var card =
-    "<div class='card medium blue-grey darken-1'><div class='card-content white-text'><span class='card-title'>" +
+    "<div class='card-panel red'><div class='card-content white-text'><span class='card-title'>" +
     data.title +
     "</span><a target='_blank' href=" +
     data.link +

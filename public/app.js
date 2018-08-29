@@ -14,7 +14,7 @@ $("#scraper-button").on("click", function() {
   $.getJSON("/scrape", function(data) {
     console.log("in Da request");
     console.log(data);
-    // Add the title and delete button to the #results section
+
     for (let i = 0; i < data.length; i++) {
       createCard(data[i]);
     }
@@ -23,7 +23,7 @@ $("#scraper-button").on("click", function() {
 
 $(document).on("click", ".addfave", function() {
   console.log("button clicked");
-  //console.log($(this).parent().parent().find("span").text())
+
   $.ajax({
     type: "POST",
     url: "/save",
@@ -143,9 +143,7 @@ $(document).on("click", "#addNote", function() {
 $(document).on("click", ".deleteNote", function() {
   // Save the p tag that encloses the button
   var selected = $(this).parent();
-  console.log(selected.attr("data-id"));
-  // Make an AJAX GET request to delete the specific note
-  // this uses the data-id of the p-tag, which is linked to the specific note
+
   $.ajax({
     type: "GET",
     url: "/delete/note/" + selected.attr("data-id"),
@@ -156,8 +154,6 @@ $(document).on("click", ".deleteNote", function() {
       selected.remove();
       // Clear the note and title inputs
       $("#note").val("");
-      // Make sure the #action-button is submit (in case it's update)
-      // $("#action-button").html("<button id='make-new'>Submit</button>");
     }
   });
 });

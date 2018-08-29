@@ -11,13 +11,8 @@ var app = express();
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-// Set the app up with morgan.
-// morgan is used to log our HTTP Requests. By setting morgan to 'dev'
-// the :status token will be colored red for server error codes,
-// yellow for client error codes, cyan for redirection codes,
-// and uncolored for all other codes.
 app.use(logger("dev"));
-// Setup the app with body-parser and a static folder
+
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -40,7 +35,6 @@ db.on("error", function(error) {
 // Routes
 // ======
 
-// Simple index route
 app.get("/", function(req, res) {
   res.send(index.html);
 });
@@ -54,8 +48,6 @@ app.post("/save", function(req, res) {
     if (error) {
       console.log(error);
     } else {
-      // Otherwise, send the note back to the browser
-      // This will fire off the success function of the ajax request
       res.send(saved);
     }
   });
@@ -70,9 +62,6 @@ app.get("/scrape", function(req, res) {
     // An empty array to save the data that we'll scrape
     var results = [];
 
-    // Select each element in the HTML body from which you want information.
-    // NOTE: Cheerio selectors function similarly to jQuery's selectors,
-    // but be sure to visit the package's npm page to see how it works
     $(".js_entry-title").each(function(i, element) {
       // console.log($(element).children();
       var link = $(element)
@@ -92,28 +81,18 @@ app.get("/scrape", function(req, res) {
   });
 });
 app.get("/find", function(req, res) {
-  // When searching by an id, the id needs to be passed in
-  // as (mongojs.ObjectId(IdYouWantToFind))
-
-  // Find just one result in the notes collection
   db.savedArticles.find(function(error, found) {
     // log any errors
     if (error) {
       console.log(error);
       res.send(error);
     } else {
-      // Otherwise, send the note to the browser
-      // This will fire off the success function of the ajax request
       console.log(found);
       res.send(found);
     }
   });
 });
 app.get("/find/:id", function(req, res) {
-  // When searching by an id, the id needs to be passed in
-  // as (mongojs.ObjectId(IdYouWantToFind))
-
-  // Find just one result in the notes collection
   db.articleNotes.find(
     {
       articleid: req.params.id
@@ -170,8 +149,6 @@ app.get("/delete/fave/:id", function(req, res) {
         console.log(error);
         res.send(error);
       } else {
-        // Otherwise, send the mongojs response to the browser
-        // This will fire off the success function of the ajax request
         console.log(removed);
         res.send(removed);
       }
